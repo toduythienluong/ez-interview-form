@@ -2,3 +2,27 @@
   height: 80%;
   width: 100%;
 }
+
+.mat-drawer-content {
+  height: 100%;
+}
+
+.router-outlet-parent {
+  display: grid;
+  height: 90%;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+}
+
+.router-outlet-container {
+  height: 90%;
+  grid-column: 1/2;
+  grid-row: span1;
+}
+
+.form-footer-container {
+  height: 100%;
+  grid-column: 1/2;
+  grid-row: span2;
+  background-color: bisque;
+}

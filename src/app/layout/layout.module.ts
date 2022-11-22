@@ -5,7 +5,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LeftComponent } from './left/left.component';
 import { RightComponent } from './right/right.component';
 import { MatListModule } from '@angular/material/list';
-
+import { FormFooterComponent } from './form-footer/form-footer.component';
+import { MaterialModule } from "../material/material.module";
 
 
 @NgModule({
@@ -13,17 +14,20 @@ import { MatListModule } from '@angular/material/list';
     HeaderComponent,
     FooterComponent,
     LeftComponent,
-    RightComponent
+    RightComponent,
+    FormFooterComponent
   ],
   imports: [
     CommonModule,
-    MatListModule
+    MatListModule,
+    MaterialModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     LeftComponent,
-    RightComponent
+    RightComponent,
+    FormFooterComponent
   ]
 })
 export class LayoutModule { }

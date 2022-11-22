@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from "./layout/layout.module";
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from "./material/material.module";
+import { MatDividerModule } from '@angular/material/divider';
+import { TaxFormModule } from "./tax-form/tax-form.module";
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatSidenavModule,
     LayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    MatDividerModule,
+    TaxFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

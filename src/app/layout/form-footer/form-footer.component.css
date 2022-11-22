@@ -1,0 +1,20 @@
+.back {
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: start;
+}
+
+.next {
+  grid-column: 2;
+  grid-row: 1;
+  justify-content: end;
+  text-align: end;
+}
+
+.form-footer-wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  height: 100%;
+  width: 100%;
+}
