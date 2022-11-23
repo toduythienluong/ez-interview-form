@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { DropdownQuestion } from './question-dropdown';
-import { QuestionBase } from './question-base';
-import { TextboxQuestion } from './question-textbox';
+import { DropdownElement } from './dropdown-element';
+import { ElementBase } from './element-base';
+import { TextboxElement } from './textbox-element';
 import { of } from 'rxjs';
 
 @Injectable()
-export class QuestionService {
-  public getQuestions(interviewFormId: string) {
+export class ElementService {
+  public getElements(interviewFormId: string) {
     /*
     TODO:
     Step 0: check the current form need to load
@@ -24,9 +24,11 @@ export class QuestionService {
     return of(questions.sort((a, b) => a.order - b.order));
   }
 
-  private buildFormElements(interviewFormId: string): QuestionBase<string>[] {
-    const elementsOne: QuestionBase<string>[] = [
-      new TextboxQuestion({
+  private buildFormElements(interviewFormId: string): ElementBase<string>[] {
+    //TODO:
+
+    const elementsOne: ElementBase<string>[] = [
+      new TextboxElement({
         key: 'federal.personalinformation.firstName',
         label: 'First Name',
         value: 'Alice',
@@ -37,8 +39,8 @@ export class QuestionService {
     if (interviewFormId == 'interview-one')
       return elementsOne;
 
-    const elementsTwo: QuestionBase<string>[] = [
-      new TextboxQuestion({
+    const elementsTwo: ElementBase<string>[] = [
+      new TextboxElement({
         key: 'federal.personalinformation.lastName',
         label: 'Last Name',
         value: 'Smith',
@@ -49,14 +51,14 @@ export class QuestionService {
     if (interviewFormId == 'interview-two')
       return elementsTwo;
 
-    const elementsThree: QuestionBase<string>[] = [
-      new TextboxQuestion({
+    const elementsThree: ElementBase<string>[] = [
+      new TextboxElement({
         key: 'federal.personalinformation.emailAddress',
         label: 'Email',
         type: 'email',
         order: 3
       }),
-      new DropdownQuestion({
+      new DropdownElement({
         key: 'federal.personalinformation.gender',
         label: 'Gender',
         options: [

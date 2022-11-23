@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QuestionBase } from '../question-base';
-import { QuestionService } from '../question.service';
+import { ElementBase } from '../element-base';
+import { ElementService } from '../element.service';
 
 @Component({
   selector: 'app-interview-one',
@@ -9,9 +9,9 @@ import { QuestionService } from '../question.service';
   styleUrls: ['./interview-one.component.css']
 })
 export class InterviewOneComponent {
-  questions$: Observable<QuestionBase<any>[]>;
+  elements$: Observable<ElementBase<any>[]>;
 
-  constructor(service: QuestionService) {
-    this.questions$ = service.getQuestions("interview-one");
+  constructor(service: ElementService) {
+    this.elements$ = service.getElements("interview-one");
   }
 }

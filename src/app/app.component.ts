@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QuestionBase } from './interview-form/question-base'
-import { QuestionService } from './interview-form/question.service'
+import { ElementBase } from './interview-form/element-base'
+import { ElementService } from './interview-form/element.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [QuestionService]
+  providers: [ElementService]
 })
 export class AppComponent {
   title = 'interview-form-platform';

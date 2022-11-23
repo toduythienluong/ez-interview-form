@@ -1,4 +1,4 @@
-export class QuestionBase<T> {
+export class ElementBase<T> {
   databindingFieldPath: string;
   value: T | undefined;
   key: string;
