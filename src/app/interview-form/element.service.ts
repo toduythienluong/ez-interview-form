@@ -4,41 +4,79 @@ import { DropdownElement } from './dropdown-element';
 import { ElementBase } from './element-base';
 import { TextboxElement } from './textbox-element';
 import { of } from 'rxjs';
+import { FormDefinitionService } from './form-definition.service';
+import { FilerRecordService } from './filer-record.service';
 
 @Injectable()
 export class ElementService {
-  public getElements(interviewFormId: string) {
-    /*
-    TODO:
-    Step 0: check the current form need to load
-    Step 1: to call API to have the form-definition
-    Step 2: having the form-definition, then we have a list of data-fields for the form
-    Step 3: load filer-record(s) associated to the form
-    Step 4: prepare data-model for the dynamic-form
+  constructor(private formDefinitionService: FormDefinitionService, private filerRecordService: FilerRecordService) {
 
-    finally, we got a list of ui-component to display as below
-    */
-
-    const questions = this.buildFormElements(interviewFormId);
-
-    return of(questions.sort((a, b) => a.order - b.order));
+  }
+  public constructDynamicElements(interviewFormId: string) {
+    var customerId = '293516';
+    //Step 0: check the workflow to get the next-form to display, get the form-definition-id
+    var formDefinitionId = this.getFormDefinitionId(interviewFormId);
+    //Step 1: load form-definition by form-definition-id (over API from backend), with a list fo field-definitions, not frontend specific
+    var formDefinition = this.formDefinitionService.getFormDefinition(formDefinitionId);
+    //Step 2: transform it to a list Field Definition on the Form Definition to the list of Dynamic Elements
+    var elements = this.transformToDynamicElements(interviewFormId, formDefinition);
+    //Step 3: load the filer-record by customerId
+    var filerRecord = this.filerRecordService.getFilerRecordByCustomerId('customerId');
+    //Step 4: bind data value from filer-record to dynamic elements
+    this.databind(filerRecord, elements);
+    //Step 5: return the Dynamic Elements to master controller
+    return of(elements.sort((a, b) => a.order - b.order));
   }
 
-  private buildFormElements(interviewFormId: string): ElementBase<string>[] {
-    //TODO:
+  private getFormDefinitionId(interviewFormId: string): string {
+    return interviewFormId;
+  }
+
+  private databind(filerRecord: any, elements: ElementBase<string>[]) {
+
+  }
+
+  private transformToDynamicElements(interviewFormId: string, formDefinition: any): ElementBase<string>[] {
+    if (interviewFormId == 'interview-one') {
+      return this.buildElementOne();
+    }
+
+    if (interviewFormId == 'interview-two') {
+      return this.buildElementTwo();
+    }
+
+    return this.buildElementThree();
+
+
+  }
+  private buildElementOne(): ElementBase<string>[] {
+    var jsonData = {
+      "formName": "interview-two",
+      "fieldDefinitions": [
+        {
+          "id": 1,
+          "displayText": "Last Name",
+          "datamapping": "PersonalInformation.lastName",
+          "type": "UserInput"
+        }
+      ]
+    }
+
+    //TODO: basically the function is to transform Field Definition as above to Dynamic Element as below
 
     const elementsOne: ElementBase<string>[] = [
       new TextboxElement({
         key: 'federal.personalinformation.firstName',
         label: 'First Name',
-        value: 'Alice',
+        value: '',
         required: true,
         order: 1
       })
     ];
-    if (interviewFormId == 'interview-one')
-      return elementsOne;
+    return elementsOne;
+  }
 
+  private buildElementTwo(): ElementBase<string>[] {
     const elementsTwo: ElementBase<string>[] = [
       new TextboxElement({
         key: 'federal.personalinformation.lastName',
@@ -48,9 +86,10 @@ export class ElementService {
         order: 2
       })
     ];
-    if (interviewFormId == 'interview-two')
-      return elementsTwo;
+    return elementsTwo;
+  }
 
+  private buildElementThree(): ElementBase<string>[] {
     const elementsThree: ElementBase<string>[] = [
       new TextboxElement({
         key: 'federal.personalinformation.emailAddress',

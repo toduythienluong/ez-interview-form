@@ -12,6 +12,6 @@ export class InterviewWizardComponent {
   questions$: Observable<ElementBase<any>[]>;
 
   constructor(service: ElementService) {
-    this.questions$ = service.getElements('');
+    this.questions$ = service.constructDynamicElements('');
   }
 }

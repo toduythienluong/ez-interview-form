@@ -12,6 +12,6 @@ export class InterviewTwoComponent {
   elements$: Observable<ElementBase<any>[]>;
 
   constructor(service: ElementService) {
-    this.elements$ = service.getElements("interview-two");
+    this.elements$ = service.constructDynamicElements("interview-two");
   }
 }
