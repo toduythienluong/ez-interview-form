@@ -11,10 +11,4 @@ import { QuestionService } from './interview-form/question.service'
 })
 export class AppComponent {
   title = 'interview-form-platform';
-
-  questions$: Observable<QuestionBase<any>[]>;
-
-  constructor(service: QuestionService) {
-    this.questions$ = service.getQuestions();
-  }
 }

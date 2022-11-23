@@ -4,13 +4,18 @@
     <div *ngFor="let question of questions" class="form-row">
       <app-question [question]="question" [form]="form"></app-question>
     </div>
-
+    <div style="margin-top: 50px;"></div>
     <div class="form-row">
       <button type="submit" [disabled]="!form.valid">Save</button>
     </div>
   </form>
 
   <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
+    <strong>this will call API to post this payload back, to persist just some fields</strong><br>
+
+
+  </div>
+  <div class="payload-wrapper">
+    {{payLoad}}
   </div>
 </div>

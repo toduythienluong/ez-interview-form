@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from "./material/material.module";
 import { MatDividerModule } from '@angular/material/divider';
 import { TaxFormModule } from "./tax-form/tax-form.module";
-
+import { InterviewFormModule } from "./interview-form/interview-form.module";
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { TaxFormModule } from "./tax-form/tax-form.module";
     ReactiveFormsModule,
     MaterialModule,
     MatDividerModule,
-    TaxFormModule
+    TaxFormModule,
+    InterviewFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

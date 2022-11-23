@@ -1,0 +1,6 @@
+.payload-wrapper {
+  background-color: red;
+  width: 20px;
+  inline-size: 20px;
+  overflow-wrap: break-all;
+}
